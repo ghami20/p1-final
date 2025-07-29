@@ -1,49 +1,74 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <!-- Reemplazar por los datos que correspondan -->
-        <title>Programación I | Final | APELLIDO/S</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
-        <link rel="shortcut icon" href="favicon.ico" />
-        <link rel="stylesheet" href="styles/styles.css" />
-        <script src="scripts/index.js"></script>
-    </head>
-    <body>
-        <header>
-            <!-- Reemplazar por los datos que correspondan -->
-            <h1>Programación I | Final | APELLIDO/S | Mi carrito</h1>
-        </header>
-        <main>
-            <!-- Este es un ejemplo de contenedor de carrito -->
-            <div id="carrito">
-                <p><span>0</span> ítems agregados</p>
-                <p>$<span>0</span> es el total</p>
-                <!-- Estos filtros pueden ser links, botones, menu desplegable. Sugiero generarlos dinamicamente -->
-                <p>Filtrar por <a href="#">Categoría 1</a> | <a href="#">Categoría 2</a> | <a href="#">Categoría 3</a></p>
-                <button>Ver carrito</button>
-            </div>
-            <h2>Productos</h2>
-            
-            <div id="productos">
-                <!-- Aca irian los productos -->
-            </div>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Apple Store | Gamaliel Quiroz</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <link rel="stylesheet" href="styles/styles.css" />
+   
+  </head>
+  <body>
+    <header>
+      <h1> Apple Store | Gamaliel Quiroz</h1>
+      <div id="toast" class="toast"></div>
+    </header>
 
-        </main>
+    <main>
+      <div id="carrito">
+        <p><span>0</span> productos</p>
+        <p>Total: $<span>0</span></p>
+        <button onclick="verCarrito()">Ver carrito</button>
+      </div>
 
-        <footer>
-            <ul>
-                <li>Profesor Fabrizio Carlassara</li>
-                <li>
-                    <a href="mailto:fabrizio.carlassara@davinci.edu.ar?subject=P1%20-%20Consulta%20-%20DW2[M|T|N][A|B]%20-%20Apellido,%20Nombre" target="_blank">fabrizio.carlassara@davinci.edu.ar</a>
-                </li>
-                <li>Programación 1</li>
-                <li>
-                    <!-- Reemplazar por el link del repositorio de GitHub -->
-                    <a href="#">URL del repo de GitHub</a>
-                </li>
-            </ul>
-        </footer>
-        
-    </body>
+      <div class="filtros">
+        <input type="number" id="minPrecio" placeholder="Mínimo" />
+        <input type="number" id="maxPrecio" placeholder="Máximo" />
+        <button onclick="filtrarPorRango()">Filtrar</button>
+      </div>
+
+      <h2 style="text-align: center">Productos</h2>
+      <div id="productos"></div>
+    </main>
+
+    <footer>
+      <p>Diseñado para Programación I - Profesor Fabrizio Carlassara</p>
+      <p>
+        <a href="mailto:fabrizio.carlassara@davinci.edu.ar">Contacto docente</a>
+      </p>
+    </footer>
+
+    <!-- Modal del Carrito -->
+    <div id="modalCarrito" class="modal" style="display: none;">
+      <div class="modal-contenido">
+        <a class="cerrar-modal" onclick="cerrarModalCarrito()">×</a>
+        <h3>Tu Carrito</h3>
+        <div id="contenidoCarrito"></div>
+        <p class="totalCarrito"></p>
+        <button onclick="carrito.vaciarCarrito(); verCarrito();">
+          Vaciar carrito
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal del Formulario de Compra -->
+    <div id="modalFormulario" class="modal" style="display: none;">
+      <div class="modal-contenido">
+        <h2>Datos del comprador</h2>
+        <form id="formularioCompra">
+          <label>Nombre completo: <input type="text" name="nombre" required></label><br><br>
+          <label>Dirección: <input type="text" name="direccion" required></label><br><br>
+          <label>Ciudad: <input type="text" name="ciudad" required></label><br><br>
+          <label>Tarjeta de crédito: <input type="text" name="tarjeta" required maxlength="16"></label><br><br>
+          <label>Email: <input type="email" name="email" required></label><br><br>
+          <button type="submit" style="background: #2ecc71; color: white; padding: 0.5rem 1rem; border: none; border-radius: 8px;">Confirmar compra</button>
+          <button type="button" onclick="cerrarFormulario()" style="margin-left: 10px;">Cancelar</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="scripts/index.js"></script>
+  </body>
 </html>
